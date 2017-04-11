@@ -28,6 +28,7 @@ class ChelController < ApplicationController
       attachments: [
         {
           text: "Who wants to play some chel?",
+          callback_id: 'chel_game',
           actions: [
             {
               name: "match_type",
