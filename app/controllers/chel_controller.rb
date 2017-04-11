@@ -20,73 +20,62 @@ class ChelController < ApplicationController
     oh\ he’ll\ pay\ for\ that\ one!
     My\ goodness!
     No\ team\ worth\ its\ name\ will\ stand\ for\ this
+    THAT\ WAS\ DEFENSE!!
+    Moving\ to\ the\ shadow\ of\ the\ boards
   )
 
   def new_match
-    render :json => {
-      text: ":docemrick: '#{EMRICK_QUOTES.sample(1).first}'",
-      attachments: [
-        {
-          text: "Who wants to play some chel?",
-          callback_id: 'chel_game',
-          actions: [
-            {
-              name: "match_type",
-              text: "1v1",
-              type: "button",
-              value: "1v1",
-            },
-            {
-              name: "match_type",
-              text: "2v1",
-              type: "button",
-              value: "2v1",
-            },
-            {
-              name: "match_type",
-              text: "2v2",
-              type: "button",
-              value: "2v2",
-            }
-          ]
-        }
-      ]
-    }
+    match = Match.create(players: [], max_players: 4)
+    actions = players(4, match.id)
+    header = random_quote
+    text = 'Who wants to play some chel?'
+    render_json(header, text, actions)
+  end
+
+  def random_quote
+    ":docemrick: '#{EMRICK_QUOTES.sample(1).first}'"
   end
 
   def button
-    case params[:callback_id]
-    when 'chel_game'
-      case params[:value]
-      when '1v1'
-        render_players(2)
-      when '2v1'
-        render_players(3)
-      when '2v2'
-        render_players(4)
-      end
+    prms = JSON.parse(params[:payload]).symbolize_keys
+    match = Match.find(prms[:actions].first['name'])
+    msg = "Challengers await!"
+    challenger = prms[:user]['name']
+    match.players << ":#{challenger}:"
+    match.save
+    if match.players.count == match.max_players
+      text = "Here are your contenders #{match.players.join(' ')}"
+      render_json(random_quote, text, [])
+    else
+      header = 'Two teams come together!'
+      text = "#{match.players.join(' ')} is in! Who else?"
+      actions = players(match.max_players - match.players.count, match.id)
+      render_json(header, text, actions)
     end
   end
 
-  def render_players(num)
-   actions = [].tap do |action|
+  def players(num, match_id)
+   [].tap do |action|
      num.times do |index|
        action << {
-          name: "Player_#{index}",
+          name: match_id,
           text: "Join!",
           type: "button",
           value: "player_#{index}"
        }
      end
    end
+  end
 
-   render :json => {
-      text: ":docemrick: 'Two Teams Collide!'",
+  def render_json(header, text, actions)
+    render :json => {
+      text: header,
+      response_type: "in_channel",
       attachments: [
         {
-          text: "Callengers await!",
-          callback_id: 'chel_challenge',
-          actions: actions
+          text: text,
+          callback_id: 'chel_game',
+          actions: actions,
         }
       ]
     }
