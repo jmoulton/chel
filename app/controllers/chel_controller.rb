@@ -53,4 +53,42 @@ class ChelController < ApplicationController
       ]
     }
   end
+
+  def button
+    case params[:callback_id]
+    when 'chel_game'
+      case params[:value]
+      when '1v1'
+        render_players(2)
+      when '2v1'
+        render_players(3)
+      when '2v2'
+        render_players(4)
+      end
+    end
+  end
+
+  def render_players(num)
+   actions = [].tap do |action|
+     num.times do |index|
+       action << {
+          name: "Player_#{index}",
+          text: "Join!",
+          type: "button",
+          value: "player_#{index}"
+       }
+     end
+   end
+
+   render :json => {
+      text: ":docemrick: 'Two Teams Collide!'",
+      attachments: [
+        {
+          text: "Callengers await!",
+          callback_id: 'chel_challenge',
+          actions: actions
+        }
+      ]
+    }
+  end
 end
