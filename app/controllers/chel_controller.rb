@@ -22,6 +22,14 @@ class ChelController < ApplicationController
     No\ team\ worth\ its\ name\ will\ stand\ for\ this
     THAT\ WAS\ DEFENSE!!
     Moving\ to\ the\ shadow\ of\ the\ boards
+    Gets\ in\ what'll\ he\ do?
+    Two\ sticks\ together\ they\ cancel
+    Big\ hit...possesion\ GONE!
+    HIT\ THE\ POST\ WITH\ THE\ SHOT!!!
+    What\ a\ skill\ level\ there!
+    Goalie\ to\ the\ bench\ extra\ attacker\ out
+    NET\ OPEN!
+    Solid\ win\ at\ center\ ice,\ now\ what?
   )
 
   def new_match
