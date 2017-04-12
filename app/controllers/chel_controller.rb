@@ -25,8 +25,9 @@ class ChelController < ApplicationController
   )
 
   def new_match
-    match = Match.create(players: [], max_players: 4)
-    actions = players(4, match.id)
+    player = ":#{params[:user_name]}:"
+    match = Match.create(players: [player], max_players: 4)
+    actions = players(3, match.id)
     header = random_quote
     text = 'Who wants to play some chel?'
     render_json(header, text, actions)
@@ -39,13 +40,13 @@ class ChelController < ApplicationController
   def button
     prms = JSON.parse(params[:payload]).symbolize_keys
     match = Match.find(prms[:actions].first['name'])
+    return lets_play(match) if prms[:actions].first['value'] == "set_players"
     msg = "Challengers await!"
     challenger = prms[:user]['name']
     match.players << ":#{challenger}:"
     match.save
     if match.players.count == match.max_players
-      text = "Here are your contenders #{match.players.join(' ')}"
-      render_json(random_quote, text, [])
+      lets_play(match)
     else
       header = 'Two teams come together!'
       text = "#{match.players.join(' ')} is in! Who else?"
@@ -54,8 +55,13 @@ class ChelController < ApplicationController
     end
   end
 
+  def lets_play(match)
+    text = "Here are your contenders #{match.players.join(' ')}"
+    render_json(random_quote, text, [])
+  end
+
   def players(num, match_id)
-   [].tap do |action|
+   actions = [].tap do |action|
      num.times do |index|
        action << {
           name: match_id,
@@ -65,6 +71,13 @@ class ChelController < ApplicationController
        }
      end
    end
+
+   actions << {
+    name: match_id,
+    text: "Set Players",
+    value: "set_players",
+    type: "button"
+   }
   end
 
   def render_json(header, text, actions)
