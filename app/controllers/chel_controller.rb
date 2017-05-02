@@ -30,6 +30,10 @@ class ChelController < ApplicationController
     Goalie\ to\ the\ bench\ extra\ attacker\ out
     NET\ OPEN!
     Solid\ win\ at\ center\ ice,\ now\ what?
+    He\ ran\ right\ over\ the\ goalie!
+    One\ of\ the\ best\ parts\ about\ this\ game\ is\ two\ big\ men\ colliding
+    Oh\ did\ ever\ get\ mashed!
+    ...and\ it\ is\ played\ by\ the\ largest\ stick\ on\ the\ ice
   )
 
   def new_match
