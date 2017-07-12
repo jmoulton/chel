@@ -34,6 +34,9 @@ EMRICK_QUOTES = %W(
   ...and\ it\ is\ played\ by\ the\ largest\ stick\ on\ the\ ice
   SHOOOOOTING!!!
   That's\ a\ good\ solid\ hit,\ he'll\ feel\ that\ one\
+  The\ winds\ have\ shifted\ yet\ again
+  Rubbed\ out\ along\ the\ boards
+  Seemed\ impossible\ but\ they've\ done\ it!
 )
 
 EDDIE_QUOTES = %w(
@@ -42,4 +45,7 @@ EDDIE_QUOTES = %w(
   I\ thought\ the\ second\ save\ was\ better
   You\ can't\ go\ around\ and\ hit\ everybody\ ESPECIALLY\ if\ they\ don't\ have\ the\ puck
   The\ goalie\ makes\ himself\ look\ big
+  He\ may\ have\ seen\ him\ at\ the\ last\ minute\ to\ absorb\ that\ hit
+  A\ missed\ opportunity\ from\ this\ close\ in
+  he\ was\ looking\ to\ knock\ him\ into\ the\ third\ row!
 )
