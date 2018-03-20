@@ -11,7 +11,7 @@ class ChelController < ApplicationController
 
   def random_quote
     if rand > 0.2222
-      ":docemrick: '#{EMRICK_QUOTES.sample(1).first}'"
+      ":docemrick: \"#{EMRICK_QUOTES.sample(1).first}\""
     else
       ":eddie: '#{EDDIE_QUOTES.sample(1).first}'"
     end

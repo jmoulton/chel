@@ -33,7 +33,7 @@ EMRICK_QUOTES = %W(
   Oh\ did\ ever\ get\ mashed!
   ...and\ it\ is\ played\ by\ the\ largest\ stick\ on\ the\ ice
   SHOOOOOTING!!!
-  That's\ a\ good\ solid\ hit,\ he'll\ feel\ that\ one\
+  That's\ a\ good\ solid\ hit,\ he'll\ feel\ that\ one
   The\ winds\ have\ shifted\ yet\ again
   Rubbed\ out\ along\ the\ boards
   Seemed\ impossible\ but\ they've\ done\ it!
