@@ -13,7 +13,7 @@ class ChelController < ApplicationController
     if rand > 0.2222
       ":docemrick: \"#{EMRICK_QUOTES.sample(1).first}\""
     else
-      ":eddie: '#{EDDIE_QUOTES.sample(1).first}'"
+      ":eddie: \"#{EDDIE_QUOTES.sample(1).first}\""
     end
   end
 
@@ -28,7 +28,7 @@ class ChelController < ApplicationController
     if match.players.count == match.max_players
       lets_play(match)
     else
-      header = 'Two teams come together!'
+      header = random_quote
       text = "#{match.players.join(' ')} is in! Who else?"
       actions = players(match.max_players - match.players.count, match.id)
       render_json(header, text, actions)
